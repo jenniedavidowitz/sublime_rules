@@ -36,9 +36,3 @@ detection_methods:
   - File analysis
   - Keyword analysis
 
-name: "Mark Wire Transfer as Spam"
-type: triage-rule
-where: detection.rule.name == "Fake Wire Instructions in Real Estate Phishing Emails"
-actions:
-  - add_tag: ["move to spam"]
-
