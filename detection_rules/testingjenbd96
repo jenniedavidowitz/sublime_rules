@@ -1,0 +1,14 @@
+name: Bad Actor Jen
+description: "Flags emails originating from the specific sender address jenbd96@gmail.com. This rule can be used for monitoring, allowlisting, blocklisting, or investigative purposes."
+type: "rule"
+severity: "low"
+source: |
+  type.inbound
+  and sender.email.address == "jenbd96@gmail.com"
+attack_types:
+  - "Monitoring"
+tactics_and_techniques:
+  - "Sender analysis"
+detection_methods:
+  - "Sender analysis"
+id: "c1d2e3f4-5678-90ab-cdef-1234567890ab"
