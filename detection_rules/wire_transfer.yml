@@ -1,11 +1,38 @@
-type.inbound
-and any(attachments,
-  .file_extension in~ ("doc", "docm", "docx", "dot", "dotm", "pptm", "ppsm", "xlm", "xls", "xlsb", "xlsm", "xlt", "xltm", "zip", "pdf", "htm", "html")
-    and any(file.explode(.), 
+name: Fake Wire Instructions in Real Estate Phishing Emails
+description: |
+  Detects inbound emails with document attachments containing embedded text
+  (via OCR) that reference wire instructions, routing numbers, or settlement
+  details. These terms are commonly used in phishing attacks targeting recent
+  homebuyers, attempting to impersonate title companies or escrow agents and
+  trick recipients into transferring funds to fraudulent accounts.
+type: rule
+severity: high
+source: |
+  type.inbound
+  and any(attachments,
+    .file_extension in~ (
+      "doc", "docm", "docx", "dot", "dotm",
+      "pptm", "ppsm", "xlm", "xls", "xlsb",
+      "xlsm", "xlt", "xltm", "zip", "pdf",
+      "htm", "html"
+    )
+    and any(file.explode(.),
       strings.icontains(.scan.ocr.raw, "wire instructions")
       or strings.icontains(.scan.ocr.raw, "routing number")
       or strings.icontains(.scan.ocr.raw, "account number")
       or strings.icontains(.scan.ocr.raw, "settlement amount")
       or strings.icontains(.scan.ocr.raw, "transfer funds")
     )
-)
+  )
+attack_types:
+  - Phishing
+  - BEC
+tactics_and_techniques:
+  - Social engineering
+  - OCR
+  - Attachment analysis
+detection_methods:
+  - OCR
+  - File analysis
+  - Keyword analysis
+id: 3e57b2f1-45ca-4abc-9cde-19a3f4b901e1
