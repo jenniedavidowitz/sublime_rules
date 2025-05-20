@@ -1,0 +1,11 @@
+type.inbound
+and any(attachments,
+  .file_extension in~ ("doc", "docm", "docx", "dot", "dotm", "pptm", "ppsm", "xlm", "xls", "xlsb", "xlsm", "xlt", "xltm", "zip", "pdf", "htm", "html")
+    and any(file.explode(.), 
+      strings.icontains(.scan.ocr.raw, "wire instructions")
+      or strings.icontains(.scan.ocr.raw, "routing number")
+      or strings.icontains(.scan.ocr.raw, "account number")
+      or strings.icontains(.scan.ocr.raw, "settlement amount")
+      or strings.icontains(.scan.ocr.raw, "transfer funds")
+    )
+)
