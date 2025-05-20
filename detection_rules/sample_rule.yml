@@ -1,0 +1,11 @@
+name: Suspicious EXE in Temp Directory
+type: rule
+severity: high
+description: Detects an executable file being run from a temporary folder.
+author: jenniedavidowitz
+
+detection:
+  selection:
+    command_line|contains: "\\Temp\\"
+    command_line|endswith: ".exe"
+  condition: selection
