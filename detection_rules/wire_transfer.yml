@@ -35,4 +35,5 @@ detection_methods:
   - OCR
   - File analysis
   - Keyword analysis
+default_actions: ["move_to_spam"]
 id: 3e57b2f1-45ca-4abc-9cde-19a3f4b901e1
