@@ -1,3 +1,8 @@
+name: Fake Wire Transfer
+description: Detects inbound emails containing attachments with embedded text (via OCR) referencing wire instructions, routing numbers, or settlement amounts — common indicators of real estate phishing and wire fraud attempts targeting recent homebuyers.
+type: rule
+severity: medium
+source: |
 type.inbound
 and any(attachments,
   .file_extension in~ ("doc", "docm", "docx", "dot", "dotm", "pptm", "ppsm", "xlm", "xls", "xlsb", "xlsm", "xlt", "xltm", "zip", "pdf", "htm", "html")
