@@ -6,7 +6,7 @@ type: rule
 severity: low
 source: |
   type.inbound
-  and sender.email.address == "jenbd96@gmail.com"
+  and sender.email.email == "jenbd96@gmail.com"
 attack_types:
   - Monitoring
 tactics_and_techniques:
